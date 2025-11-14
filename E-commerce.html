@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Mariposa — Ladies Garments</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+      :root {
+        --accent: #c44b8a;
+        --muted: #f5f6f8;
+        --bg: #fbfbfd;
+        --card: #ffffff;
+        --text: #222;
+        --glass: rgba(255, 255, 255, 0.6);
+        --max-width: 1100px;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        font-family: "Public Sans", system-ui, -apple-system, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial;
+        color: var(--text);
+        background: var(--bg);
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+.btn-hover:hover {
+  background-color: #ff7ab6;
+      transform: scale(1.05);
+    }
+      
+      .container {
+        max-width: var(--max-width);
+        margin: 0 auto;
+        padding: 2rem;
+      }
+      .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 1rem 0;
+      }
+      .brand {
+        display: flex;
+        gap: 0.75rem;
+        align-items: center;
+      }
+      .logo {
+        width: 44px;
+        height: 44px;
+        background: linear-gradient(135deg, var(--accent), #ff7ab6);
+        border-radius: 10px;
+        display: grid;
+        place-items: center;
+        color: white;
+        font-weight: 700;
+      }
+      .nav {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+      }
+      .nav a {
+        padding: 0.5rem 0.75rem;
+        border-radius: 8px;
+        font-weight: 600;
+        color: #444;
+      }
+      .nav a.btn {
+        background: var(--accent);
+        color: white;
+      }
+
+      /* Search bar */
+      .search {
+        flex: 1;
+        max-width: 420px;
+        margin-left: 1rem;
+      }
+      .search input {
+        width: 100%;
+        padding: 0.6rem 0.8rem;
+        border-radius: 12px;
+        border: 1px solid #e6e6e9;
+        background: white;
+      }
+
+      /* Hero section start */
+      .hero {
+        display: grid;
+        grid-template-columns: 1fr 420px;
+        gap: 2rem;
+        align-items: center;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.5),
+          transparent
+        );
+        padding: 2rem;
+        border-radius: 16px;
+      }
+      .hero-left h1 {
+        font-size: 2.2rem;
+        margin: 0 0 0.5rem;
+      }
+      .hero-left p {
+        margin: 0 0 1rem;
+        color: #555;
+      }
+      .cta {
+        display: inline-block;
+        padding: 0.7rem 1rem;
+        border-radius: 12px;
+        background: var(--accent);
+        color: #fff;
+        font-weight: 700;
+      }
+      .hero-right {
+        background: linear-gradient(180deg, #fff, var(--muted));
+        padding: 1rem;
+        border-radius: 12px;
+      }
+      .featured {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.6rem;
+      }
+      .featured img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        border-radius: 8px;
+      }
+
+      /* Categories  start*/
+      .categories {
+        display: flex;
+        gap: 0.6rem;
+        margin: 1.25rem 0;
+        flex-wrap: wrap;
+      }
+      .cat {
+        background: white;
+        padding: 0.6rem 0.9rem;
+        border-radius: 999px;
+        border: 1px solid #eee;
+        font-weight: 600;
+      }
+
+      /* Products start */
+      .products {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+      .card {
+        background: var(--card);
+        padding: 1rem;
+        border-radius: 12px;
+        border: 1px solid #eee;
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+      }
+      .card img {
+        width: 100%;
+        height: 260px;
+        object-fit: cover;
+        border-radius: 10px;
+      }
+      .card .title {
+        font-weight: 700;
+      }
+      .price-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .price {
+        font-weight: 800;
+        color: var(--accent);
+      }
+      .add {
+        padding: 0.45rem 0.7rem;
+        border-radius: 8px;
+        border: 1px dashed var(--accent);
+        font-weight: 700;
+      }
+
+      /* Modal detail use karenge detail ma target krne ke lie  */
+      .modal {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(15, 15, 15, 0.5);
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+        z-index: 60;
+      }
+      .modal:target {
+        display: flex;
+      }
+      .modal .panel {
+        background: white;
+        padding: 1.2rem;
+        border-radius: 12px;
+        max-width: 900px;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+      .panel img {
+        width: 100%;
+        height: 420px;
+        object-fit: cover;
+        border-radius: 10px;
+      }
+      .panel .meta {
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+      }
+      .meta h2 {
+        margin: 0;
+      }
+      .meta p {
+        color: #555;
+      }
+      .close {
+        justify-self: end;
+        padding: 0.3rem 0.6rem;
+        border-radius: 8px;
+      }
+
+      /* Footer start hogyaa */
+      footer {
+      
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    font-family: Arial, sans-serif;
+}
+
+footer .social-footer {
+    margin-bottom: 10px;
+}
+
+footer .social-link {
+    color: #fff;
+    font-size: 24px;
+    margin: 0 15px;
+    transition: color 0.3s, transform 0.3s;
+}
+
+footer .social-link:hover {
+    color: #ff3385;  /* Hover color */
+    transform: scale(1.2);
+}
+
+footer p {
+    font-size: 14px;
+    margin: 0;
+}
+
+      
+
+      /* Responsive */
+      @media (max-width: 980px) {
+        .hero {
+          grid-template-columns: 1fr;
+        }
+        .products {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (max-width: 640px) {
+        .container {
+          padding: 1rem;
+        }
+        .nav {
+          display: none;
+        }
+        .search {
+          max-width: initial;
+          margin-left: 0;
+        }
+        .products {
+          grid-template-columns: 1fr;
+        }
+        .panel {
+          grid-template-columns: 1fr;
+        }
+        .panel img {
+          height: 260px;
+        }
+      }
+
+      /* small utilities */
+      .muted {
+        color: #777;
+        font-size: 0.95rem;
+      }
+      .small {
+        font-size: 0.9rem;
+      }
+      .center {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div class="brand">
+          <div class="logo">M</div>
+          <div>
+            <div style="font-weight: 700">MELTORA</div>
+            <div class="muted small">Ladies garments</div>
+          </div>
+        </div>
+
+        <div class="search">
+          <input
+            placeholder="Search dresses, tops, kurtas..."
+            aria-label="search"
+          />
+        </div>
+
+        <nav>
+          <a href="./home.html" class="btn-hover">home</a>
+          <a href="./collections.html" class="btn-hover">Collections</a>
+          <a href="./about.html" class="btn-hover">About</a>
+          <a class ="btn" href="./contact.html">Contact</a>
+        </nav>
+      </header>
+
+      <section class="hero">
+        <div class="hero-left">
+          <h1>New season. New styles.</h1
+          <p>
+            Discover modern silhouettes, timeless prints and feel-great fabrics
+            — curated for the everyday woman.
+          </p>
+          <a class="cta" href="#collections">Shop Collections</a>
+
+          <div class="categories" style="margin-top: 1.25rem">
+            <div class="cat">Dresses</div>
+            <div class="cat">Tops</div>
+            <div class="cat">Kurtas</div>
+            <div class="cat">Evening</div>
+            <div class="cat">Sale</div>
+          </div>
+        </div>
+
+        <div class="hero-right">
+          <div style="font-weight: 700; margin-bottom: 0.6rem">Featured</div>
+          <div class="featured">
+            <img
+              src="https://images.unsplash.com/photo-1514996937319-344454492b37?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=1a6f7b7d5f2b4a1e6f73f8a7f2d4b1fa"
+              alt="featured1"
+            />
+            <img
+              src="https://images.unsplash.com/photo-1520975913406-6f0b81c3b9cc?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=9c1d8b2f3b6f8a9e6b7c5d4a3f2e1d0c"
+              alt="featured2"
+            />
+            <img
+              src="https://images.unsplash.com/photo-1522184216315-0d9b4a0e9f67?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=6c2f1a3b4d5e6f7a8b9c0d1e2f3a4b5c"
+              alt="featured3"
+              style="grid-column: span 2"
+            />
+            <img
+              src="https://images.unsplash.com/photo-1534921160921-3b4a3f4dd3d8?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=abcd1234abcd1234abcd1234abcd1234"
+              alt="featured4"
+            />
+          </div>
+        </div>
+      </section>
+
+      <main>
+        <section id="collections">
+          <h2 style="margin-top: 1.25rem">Best sellers</h2>
+          <div class="products">
+            <!-- Product 1 -->
+            <article class="card">
+              <a href="#product1"
+                ><img
+                  src="https://images.unsplash.com/photo-1520975913406-6f0b81c3b9cc?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=9c1d8b2f3b6f8a9e6b7c5d4a3f2e1d0c"
+                  alt="Floral A-line dress"
+              /></a>
+              <div class="title">Floral A-line Dress</div>
+              <div class="muted">Light cotton, summer-ready</div>
+              <div class="price-row">
+                <div class="price">PKR 4,499</div>
+                <a class="add" href="#product1">View</a>
+              </div>
+            </article>
+
+            <!-- Product 2 -->
+            <article class="card">
+              <a href="#product2"
+                ><img
+                  src="https://images.unsplash.com/photo-1539874754764-5a9655913d4b?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=22222222222222222222222222222222"
+                  alt="Silk Evening Gown"
+              /></a>
+              <div class="title">Silk Evening Gown</div>
+              <div class="muted">Elegant cut for special nights</div>
+              <div class="price-row">
+                <div class="price">PKR 12,990</div>
+                <a class="add" href="#product2">View</a>
+              </div>
+            </article>
+
+            <!-- Product 3 -->
+            <article class="card">
+              <a href="#product3"
+                ><img
+                  src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=33333333333333333333333333333333"
+                  alt="Embroidered Kurta"
+              /></a>
+              <div class="title">Embroidered Kurta</div>
+              <div class="muted">Traditional craftwork</div>
+              <div class="price-row">
+                <div class="price">PKR 3,200</div>
+                <a class="add" href="#product3">View</a>
+              </div>
+            </article>
+
+            <!-- Product 4 -->
+            <article class="card">
+              <a href="#product4"
+                ><img
+                  src="https://images.unsplash.com/photo-1495121605193-b116b5b09e0b?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=44444444444444444444444444444444"
+                  alt="Casual Top"
+              /></a>
+              <div class="title">Ruffle Casual Top</div>
+              <div class="muted">Soft modal blend</div>
+              <div class="price-row">
+                <div class="price">PKR 1,650</div>
+                <a class="add" href="#product4">View</a>
+              </div>
+            </article>
+
+            <!-- Product 5 -->
+            <article class="card">
+              <a href="#product5"
+                ><img
+                  src="https://images.unsplash.com/photo-1503342452485-86f7f2a1f5c7?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=55555555555555555555555555555555"
+                  alt="Denim Jacket"
+              /></a>
+              <div class="title">Denim Shacket</div>
+              <div class="muted">Lightweight layering piece</div>
+              <div class="price-row">
+                <div class="price">PKR 2,799</div>
+                <a class="add" href="#product5">View</a>
+              </div>
+            </article>
+
+            <!-- Product 6 -->
+            <article class="card">
+              <a href="#product6"
+                ><img
+                  src="https://images.unsplash.com/photo-1520975925941-9d3a3a6b1c5b?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=66666666666666666666666666666666"
+                  alt="Pleated Skirt"
+              /></a>
+              <div class="title">Pleated Midi Skirt</div>
+              <div class="muted">Flowy feminine silhouette</div>
+              <div class="price-row">
+                <div class="price">PKR 2,150</div>
+                <a class="add" href="#product6">View</a>
+              </div>
+            </article>
+
+            <!-- Product 7 -->
+            <article class="card">
+              <a href="#product7"
+                ><img
+                  src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=77777777777777777777777777777777"
+                  alt="Summer Jumpsuit"
+              /></a>
+              <div class="title">Easy Summer Jumpsuit</div>
+              <div class="muted">One-piece comfort</div>
+              <div class="price-row">
+                <div class="price">PKR 3,399</div>
+                <a class="add" href="#product7">View</a>
+              </div>
+            </article>
+
+            <!-- Product 8 -->
+            <article class="card">
+              <a href="#product8"
+                ><img
+                  src="https://images.unsplash.com/photo-1520975913406-6f0b81c3b9cc?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=88888888888888888888888888888888"
+                  alt="Evening Top"
+              /></a>
+              <div class="title">Sequined Evening Top</div>
+              <div class="muted">Statement shimmer</div>
+              <div class="price-row">
+                <div class="price">PKR 2,999</div>
+                <a class="add" href="#product8">View</a>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- Product Modals (detail pages simulated with :target) -->
+        <div id="product1" class="modal">
+          <div class="panel">
+            <img
+              src="https://images.unsplash.com/photo-1520975913406-6f0b81c3b9cc?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=9c1d8b2f3b6f8a9e6b7c5d4a3f2e1d0c"
+              alt="Floral A-line dress detail"
+            />
+            <div class="meta">
+              <a class="close" href="#collections">Close ✕</a>
+              <h2>Floral A-line Dress</h2>
+              <div class="price">PKR 4,499</div>
+              <p class="muted">
+                A breathable cotton a-line with a soft floral print. Available
+                in S, M, L. Perfect for summer events or day-to-day wear.
+              </p>
+              <p class="small">Care: Machine wash cold. Gentle cycle.</p>
+              <div style="margin-top: auto; display: flex; gap: 0.5rem">
+                <a class="cta" href="#">Add to cart</a>
+                <a class="small center" href="#">Size guide</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Duplicate modals for product2..8 (simplified to keep file manageable) -->
+        <div id="product2" class="modal">
+          <div class="panel">
+            <img
+              src="https://images.unsplash.com/photo-1539874754764-5a9655913d4b?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=22222222222222222222222222222222"
+            />
+            <div class="meta">
+              <a class="close" href="#collections">Close ✕</a>
+              <h2>Silk Evening Gown</h2>
+              <div class="price">PKR 12,990</div>
+              <p class="muted">
+                Luxurious silk with a flattering cut for evening wear.
+              </p>
+              <div style="margin-top: auto; display: flex; gap: 0.5rem">
+                <a class="cta" href="#">Add to cart</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="product3" class="modal">
+          <div class="panel">
+            <img
+              src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=33333333333333333333333333333333"
+            />
+            <div class="meta">
+              <a class="close" href="#collections">Close ✕</a>
+              <h2>Embroidered Kurta</h2>
+              <div class="price">PKR 3,200</div>
+              <p class="muted">Hand-stitched details with breathable fabric.</p>
+              <div style="margin-top: auto; display: flex; gap: 0.5rem">
+                <a class="cta" href="#">Add to cart</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="product4" class="modal">
+          <div class="panel">
+            <img
+              src="https://images.unsplash.com/photo-1495121605193-b116b5b09e0b?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=44444444444444444444444444444444"
+            />
+            <div class="meta">
+              <a class="close" href="#collections">Close ✕</a>
+              <h2>Ruffle Casual Top</h2>
+              <div class="price">PKR 1,650</div>
+              <p class="muted">Soft modal blend — easy to style.</p>
+              <div style="margin-top: auto; display: flex; gap: 0.5rem">
+                <a class="cta" href="#">Add to cart</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="product5" class="modal">
+          <div class="panel">
+            <img
+              src="https://images.unsplash.com/photo-1503342452485-86f7f2a1f5c7?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=55555555555555555555555555555555"
+            />
+            <div class="meta">
+              <a class="close" href="#collections">Close ✕</a>
+              <h2>Denim Shacket</h2>
+              <div class="price">PKR 2,799</div>
+              <p class="muted">Versatile layering piece for cooler evenings.</p>
+              <div style="margin-top: auto; display: flex; gap: 0.5rem">
+                <a class="cta" href="#">Add to cart</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="product6" class="modal">
+          <div class="panel">
+            <img
+              src="https://images.unsplash.com/photo-1520975925941-9d3a3a6b1c5b?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=66666666666666666666666666666666"
+            />
+            <div class="meta">
+              <a class="close" href="#collections">Close ✕</a>
+              <h2>Pleated Midi Skirt</h2>
+              <div class="price">PKR 2,150</div>
+              <p class="muted">
+                A flowing shape that pairs well with tops or sweaters.
+              </p>
+              <div style="margin-top: auto; display: flex; gap: 0.5rem">
+                <a class="cta" href="#">Add to cart</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="product7" class="modal">
+          <div class="panel">
+            <img
+              src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=77777777777777777777777777777777"
+            />
+            <div class="meta">
+              <a class="close" href="#collections">Close ✕</a>
+              <h2>Easy Summer Jumpsuit</h2>
+              <div class="price">PKR 3,399</div>
+              <p class="muted">Comfort-first one-piece for hot days.</p>
+              <div style="margin-top: auto; display: flex; gap: 0.5rem">
+                <a class="cta" href="#">Add to cart</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="product8" class="modal">
+          <div class="panel">
+            <img
+              src="https://images.unsplash.com/photo-1520975913406-6f0b81c3b9cc?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=88888888888888888888888888888888"
+            />
+            <div class="meta">
+              <a class="close" href="#collections">Close ✕</a>
+              <h2>Sequined Evening Top</h2>
+              <div class="price">PKR 2,999</div>
+              <p class="muted">Shimmering top for celebrations.</p>
+              <div style="margin-top: auto; display: flex; gap: 0.5rem">
+                <a class="cta" href="#">Add to cart</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <footer>
+        <p> Get in touch with me </p>
+        
+        <div class="social-footer">
+            <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+        </div> 
+      
+        </h4>let's talk for Something special</h4>
+      
+      <address>faiq14198@gmail.com</address>
+<
+      </footer>
+    </div>
+  </body>
+</html>
